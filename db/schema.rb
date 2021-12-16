@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_11_102853) do
+ActiveRecord::Schema.define(version: 2021_12_16_145427) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "artist_id"
@@ -55,11 +55,24 @@ ActiveRecord::Schema.define(version: 2021_12_11_102853) do
     t.index ["post_id"], name: "index_photos_on_post_id"
   end
 
+  create_table "post_songs", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "song_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_post_songs_on_post_id"
+    t.index ["song_id"], name: "index_post_songs_on_song_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "caption"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title", null: false
+    t.datetime "live_datetime"
+    t.integer "artist_id"
+    t.text "description"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -90,5 +103,7 @@ ActiveRecord::Schema.define(version: 2021_12_11_102853) do
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "photos", "posts"
+  add_foreign_key "post_songs", "posts"
+  add_foreign_key "post_songs", "songs"
   add_foreign_key "posts", "users"
 end
