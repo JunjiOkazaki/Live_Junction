@@ -5,12 +5,33 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Listen for rdebug-ide",
+      "type": "Ruby",
+      "request": "attach",
+      "remoteHost": "127.0.0.1",
+      "remotePort": "1234",
+      "remoteWorkspaceRoot": "${workspaceRoot}"
+    },
+    {
+      "name": "Rails server",
+      "type": "Ruby",
+      "request": "launch",
+      "program": "${workspaceRoot}/bin/rails",
+      "showDebuggerOutput": true,
+      "useBundler": true,
+      "pathToRDebugIDE": "/Users/jumac/.rbenv/shims/rdebug-ide",
+      "args": [
+        "server"
+      ]
+    },
+    {
       "name": "Debug Rails",
       "type": "Ruby",
       "request": "launch",
       "cwd": "${workspaceRoot}",
       "program": "${workspaceRoot}/bin/rails",
-      "pathToRDebugIDE": "/home/trantan/.rbenv/versions/2.5.1/bin/rdebug-ide",
+      "useBundler": true,
+      "pathToRDebugIDE": "/Users/jumac/.rbenv/shims/rdebug-ide",
       "args": [
         "server"
       ]

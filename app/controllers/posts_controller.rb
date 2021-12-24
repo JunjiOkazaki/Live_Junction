@@ -6,6 +6,9 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post.photos.build
+    @artists = Artist.all
+    @albums = Album.all
+    @songs = Song.all
   end
 
   def create
