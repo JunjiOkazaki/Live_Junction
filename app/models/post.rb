@@ -7,8 +7,8 @@ class Post < ApplicationRecord
   has_many :songs, through: :post_songs
 
   accepts_nested_attributes_for :photos
-
-  validates :caption, presence: true
+  accepts_nested_attributes_for :post_songs, allow_destroy: true
+  # fields_for用のネスト
 
   def liked_by(user)
     Like.find_by(user_id: user.id, post_id: id)

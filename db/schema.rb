@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_22_081338) do
+ActiveRecord::Schema.define(version: 2022_01_29_094637) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "artist_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_081338) do
     t.integer "song_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "song_order", null: false
     t.index ["post_id"], name: "index_post_songs_on_post_id"
     t.index ["song_id"], name: "index_post_songs_on_song_id"
   end
@@ -72,8 +73,8 @@ ActiveRecord::Schema.define(version: 2021_12_22_081338) do
     t.string "title", null: false
     t.datetime "live_datetime"
     t.text "description"
-    t.integer "artists_id"
-    t.index ["artists_id"], name: "index_posts_on_artists_id"
+    t.integer "artist_id"
+    t.index ["artist_id"], name: "index_posts_on_artist_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -82,9 +83,9 @@ ActiveRecord::Schema.define(version: 2021_12_22_081338) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "artists_id"
+    t.integer "artist_id"
     t.index ["album_id"], name: "index_songs_on_album_id"
-    t.index ["artists_id"], name: "index_songs_on_artists_id"
+    t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -108,7 +109,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_081338) do
   add_foreign_key "photos", "posts"
   add_foreign_key "post_songs", "posts"
   add_foreign_key "post_songs", "songs"
-  add_foreign_key "posts", "artists", column: "artists_id"
+  add_foreign_key "posts", "artists"
   add_foreign_key "posts", "users"
-  add_foreign_key "songs", "artists", column: "artists_id"
+  add_foreign_key "songs", "artists"
 end

@@ -1,0 +1,46 @@
+<div class="d-flex flex-column align-items-center mt-3">
+  <div class="col-xl-7 col-lg-8 col-md-10 col-sm-11 post-card">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="pt-1">セットリスト作成画面</h3>
+      </div>
+      <div class="card-body">
+        <%= form_with model: @post, class: "upload-images p-0 border-0" do |f| %>
+        <div class="row mt-2">
+          <%= f.label :artist, "アーティスト名：", class: "col-md-3" %>
+          <%= f.select :artist, @artists.map{ |artist| [artist.name, artist.id] }, { include_blank: true }, { class: "border col-md-7" } %>
+        </div>
+        <div class="form-group row mt-2">
+          <%= f.label :title, "LIVEタイトル：", class: "col-md-3" %>
+          <%= f.text_field :title, class: "border col-md-7" %>
+        </div>
+        <div class="form-group row mt-2">
+          <%= f.label :song, "M01：", class: "col-md-2" %>
+          <%= f.select :album, @albums.map{ |album| [album.name, album.id] }, { include_blank: true }, { class: "select-parent border col-md-5" } %>
+          <%= f.select :song, @songs.map{ |song| [song.name, song.id] }, { include_blank: true }, { class: "border col-md-5" } %>
+        </div>
+        <div class="mt-3 mb-4">
+
+          <%= f.fields_for :photos do |i| %>
+            <%= i.file_field :image %>
+          <% end %>
+
+        </div>
+        <%= f.submit "投稿する", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= form_with model: @post, class: "upload-images p-0 border-0" do |f| %>
+  <%= f.text_field :name %>
+  <% album_options = Album.order(:id).map { |a| [a.name, a.id, data: { children_path: album_songs_path(a) }] } %>
+  <%= f.select :album_id, album_options, { include_blank: true }, { class: 'select-parent' } %>
+
+  <% songs = albums.try(:songs) || [] %>
+  <% songs_options = songs.map { |c| [c.name, c.id] } %>
+  <%= f.select :songs_id, songs_options, { include_blank: true }, { class: 'select-children' } %>
+
+<%= f.submit "投稿する", class: "btn btn-primary" %>
+<% end %>
