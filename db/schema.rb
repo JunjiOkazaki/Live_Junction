@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_29_094637) do
+ActiveRecord::Schema.define(version: 2022_02_02_101758) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "artist_id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2022_01_29_094637) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "song_order", null: false
+    t.integer "album_id"
     t.index ["post_id"], name: "index_post_songs_on_post_id"
     t.index ["song_id"], name: "index_post_songs_on_song_id"
   end

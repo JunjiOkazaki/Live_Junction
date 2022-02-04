@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(function () {
   return (function () {
     //選択された親カテゴリのオプションから、data - children - pathの値を読み取る
     let replaceChildrenOptions, replaceSelectOptions;
