@@ -18,7 +18,7 @@
 }
 
 .parts {
-  margin: 12px 0;
+  margin: 12px 0px;
 }
 
 .love {
@@ -53,6 +53,14 @@
   padding: 0px;
 }
 
+.card-title {
+  padding: 12px;
+}
+
+.card-left {
+  padding: 20px;
+}
+
 .card-right {
   padding: 20px;
 }
@@ -68,6 +76,19 @@
   border-bottom: 1px solid #e6e6e6;
   height: 320px;
   overflow: auto;
+}
+
+.card-header-margin {
+  margin-left: 12px;
+}
+
+.card-header-colon-margin {
+  margin-left: 12px;
+  margin-top: 12px;
+}
+
+.card-body-song-info {
+  display: inline-block;
 }
 
 .postShow-wrap {

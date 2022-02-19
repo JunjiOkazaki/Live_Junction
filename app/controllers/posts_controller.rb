@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.limit(10).includes(:photos, :user).order('created_at DESC')
+    @posts = Post.limit(10).includes(:artist, :photos, :post_songs, :songs, :user ).order(created_at: "DESC")
   end
 
   def show
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:artist_id, :title, :caption, photos_attributes: [:image], post_songs_attributes: [:id, :album_id, :song_id, :song_order]).merge(user_id: current_user.id)
+      params.require(:post).permit(:artist_id, :title, :caption, photos_attributes: [:image], post_songs_attributes: [:id, :album_id, :song_id, :song_order, :_destroy ]).merge(user_id: current_user.id)
     end
 
     def set_post

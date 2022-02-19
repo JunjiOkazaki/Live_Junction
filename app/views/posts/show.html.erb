@@ -2,11 +2,19 @@
   <div class="row post-wrap">
     <div class="col-md-8">
       <div class="card-left">
-        <% if @post.photos.exists? %>
-          <%= image_tag @post.photos.first.image.url(:medium), class: "card-img-top" %>
+        <h3 class="card-title"><%= @post.title %></h3>
+        <% @post.post_songs.each do |post_song| %>
+          <div class="row">
+            <p class="card-body-song-info col-md-6">M <%= post_song.song_order %> : <%= post_song.song.name %></p>
+            <p class="card-body-song-info col-md-6">from : <%= post_song.song.album.name %></p>
+          </div>
         <% end %>
       </div>
+      <% if @post.photos.exists? %>
+        <%= image_tag @post.photos.first.image.url(:medium), class: "card-img-top" %>
+      <% end %>
     </div>
+
     <div class="col-md-4">
       <div class="card-right">
         <div class="card-right-comment">
