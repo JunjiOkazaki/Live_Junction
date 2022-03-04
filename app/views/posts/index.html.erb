@@ -6,13 +6,19 @@
           <%= link_to user_path(post.user), class: "no-text-decoration" do %>
             <%= image_pack_tag avatar_url(post.user), class: "post-profile-icon" %>
           <% end %>
-          <%= link_to user_path(post.user), class: "black-color no-text-decoration",
-            title: post.user.name do %>
+          <%= link_to user_path(post.user), class: "black-color no-text-decoration", title: post.user.name do %>
             <strong><%= post.user.name %></strong>
           <% end %>
+          <div class="card-header-margin">
+            <%= post.artist.name %>
+          </div>
+          <div class="card-header-colon-margin"><p>:</p></div>
+          <div class="card-header-margin">
+            <%= link_to post.title, post_path(post) %>
+          </div>
 
           <% if post.user_id == current_user.id %>
-            <%= link_to post_path(post), method: :delete, class: "ml-auto mx-0 my-auto" do %>
+            <%= link_to post_path(post), method: :delete, class: "ml-auto mx-2 my-auto" do %>
               <div class="delete-post-icon">
               </div>
             <% end %>
@@ -27,6 +33,14 @@
 
         <div class="card-body">
           <div class="row parts">
+            <div class="row">
+              <% post.post_songs.each do |post_song| %>
+                <div class="row">
+                  <p class="card-body-song-info col">M <%= post_song.song_order %> : <%= post_song.song.name %></p>
+                  <p class="card-body-song-info col">from : <%= post_song.song.album.name %></p>
+                </div>
+              <% end %>
+            </div>
             <div id="like-icon-post-<%= post.id.to_s %>">
               <% if post.liked_by(current_user).present? %>
                 <%= link_to "いいねを取り消す", post_like_path(post.id, post.liked_by(current_user)), method: :DELETE, remote: true, class: "loved hide-text" %>
@@ -41,7 +55,6 @@
           </div>
           <div>
             <span><strong><%= post.user.name %></strong></span>
-            <span><%= post.caption %></span>
             <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post), class: "post-time no-text-decoration" %>
             <div id="comment-post-<%= post.id.to_s %>">
               <%= render 'comment_list', { post: post } %>

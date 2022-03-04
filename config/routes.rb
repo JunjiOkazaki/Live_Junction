@@ -10,4 +10,9 @@ Rails.application.routes.draw do
     resources :likes, only: %i(create destroy)
     resources :comments, only: %i(create destroy)
   end
+
+  resources :albums, only: [] do
+    resources :songs, only: :index
+  end
+
 end

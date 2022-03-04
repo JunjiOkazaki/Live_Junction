@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_27_174836) do
+ActiveRecord::Schema.define(version: 2022_02_02_101758) do
+
+  create_table "albums", force: :cascade do |t|
+    t.integer "artist_id"
+    t.string "name", null: false
+    t.date "released_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "comment", null: false
@@ -39,12 +55,38 @@ ActiveRecord::Schema.define(version: 2021_11_27_174836) do
     t.index ["post_id"], name: "index_photos_on_post_id"
   end
 
+  create_table "post_songs", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "song_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "song_order", null: false
+    t.integer "album_id"
+    t.index ["post_id"], name: "index_post_songs_on_post_id"
+    t.index ["song_id"], name: "index_post_songs_on_song_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "caption"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title", null: false
+    t.datetime "live_datetime"
+    t.text "description"
+    t.integer "artist_id"
+    t.index ["artist_id"], name: "index_posts_on_artist_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.integer "album_id"
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "artist_id"
+    t.index ["album_id"], name: "index_songs_on_album_id"
+    t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,5 +108,9 @@ ActiveRecord::Schema.define(version: 2021_11_27_174836) do
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "photos", "posts"
+  add_foreign_key "post_songs", "posts"
+  add_foreign_key "post_songs", "songs"
+  add_foreign_key "posts", "artists"
   add_foreign_key "posts", "users"
+  add_foreign_key "songs", "artists"
 end

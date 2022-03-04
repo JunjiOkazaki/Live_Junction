@@ -1,0 +1,10 @@
+<div class="nested-fields row">
+  <%= f.label :post_songs, "M 1 :", id: "label-target", class: "col-md-2" %>
+  <% album_options = Album.order(:id).map { |a| [a.name, a.id, data: { children_path: album_songs_path(a) }] } %>
+  <%= f.select :album_id, album_options, { include_blank: true }, { id: "parent-target", class: "select-parent1 border col-md-5" } %>
+  <% songs = @albums.try(:songs) || [] %>
+  <% songs_options = songs.map { |s| [s.name, s.id] } %>
+  <%= f.select :song_id, songs_options, { include_blank: true }, { id: "children-target", class: "select-children1 border col-md-5" } %>
+  <%= f.hidden_field :song_order, value: 1, id: "hidden-target" %>
+  <%= link_to_remove_association "曲フォームの削除", f %>
+</div>
