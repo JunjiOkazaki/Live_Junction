@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2022_02_02_101758) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "albums", force: :cascade do |t|
-    t.integer "artist_id"
+    t.bigint "artist_id"
     t.string "name", null: false
     t.date "released_at"
     t.datetime "created_at", precision: 6, null: false
@@ -30,8 +33,8 @@ ActiveRecord::Schema.define(version: 2022_02_02_101758) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment", null: false
-    t.integer "post_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -39,8 +42,8 @@ ActiveRecord::Schema.define(version: 2022_02_02_101758) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
@@ -49,15 +52,15 @@ ActiveRecord::Schema.define(version: 2022_02_02_101758) do
 
   create_table "photos", force: :cascade do |t|
     t.string "image", null: false
-    t.integer "post_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_photos_on_post_id"
   end
 
   create_table "post_songs", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "song_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "song_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "song_order", null: false
@@ -68,23 +71,23 @@ ActiveRecord::Schema.define(version: 2022_02_02_101758) do
 
   create_table "posts", force: :cascade do |t|
     t.string "caption"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", null: false
     t.datetime "live_datetime"
     t.text "description"
-    t.integer "artist_id"
+    t.bigint "artist_id"
     t.index ["artist_id"], name: "index_posts_on_artist_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "songs", force: :cascade do |t|
-    t.integer "album_id"
+    t.bigint "album_id"
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "artist_id"
+    t.bigint "artist_id"
     t.index ["album_id"], name: "index_songs_on_album_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
