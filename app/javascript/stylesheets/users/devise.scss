@@ -44,7 +44,7 @@
   min-height: 100vh;
 }
 
-footer {
+.footer {
   margin-top: auto;
 }
 
@@ -54,5 +54,11 @@ footer {
   }
   .devise-card {
     background-color: #fafafa;
+  }
+}
+
+.top-guidance {
+  :first-child {
+    font-weight: bold;
   }
 }

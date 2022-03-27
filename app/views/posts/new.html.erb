@@ -15,8 +15,14 @@
             <%= f.text_field :title, class: "border col-md-7" %>
           </div>
 
+          <div class="row mt-4">
+            <p class="col-md-2"></p>
+            <p class="col-md-5">収録アルバム</p>
+            <p class="col-md-5">演奏曲</p>
+          </div>
+
           <% m_number = 0 %>
-          <div id="post_songs" class="cocoon-field form-group row mt-2">
+          <div id="post_songs" class="cocoon-field form-group row">
             <%= f.fields_for :post_songs do |post_song| %>
               <%= render 'post_song_fields', f: post_song %>
             <% end %>
