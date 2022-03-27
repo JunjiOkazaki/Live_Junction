@@ -4,6 +4,19 @@
       <div class="form-group text-center">
         <h2 class="logo-img mx-auto"></h2>
       </div>
+      <div class="top-guidance">
+        <p>
+          LiveJunctionはメディアミックス作品「BanG Dream!」プロジェクトのリアルバンド「RAISE A SUILEN」のセットリスト作成webアプリです。
+          アルバム名から曲名を順番に選択していくだけで、あなたが参加したライブの
+          セットリストを簡単に作成できます。
+        </p>
+        <p>
+          セットリストとは・・・バンドがライブで演奏した曲の一覧を順番に記したもの。
+          どの曲がどのタイミングで演奏されるかはライブ愛好者にとって大きな関心事の
+          一つであるため、ライブ直後にはセットリストと感想を記した投稿がSNS上で
+          多くみられる。
+        </p>
+      </div>
       <%= form_with scope: resource, as: resource_name, url: session_path(resource_name), local: true do |f| %>
         <%= devise_error_messages! %>
         <div class="form-group">

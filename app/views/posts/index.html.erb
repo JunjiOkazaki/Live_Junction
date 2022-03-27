@@ -37,7 +37,8 @@
               <% post.post_songs.each do |post_song| %>
                 <div class="row">
                   <p class="card-body-song-info col">M <%= post_song.song_order %> : <%= post_song.song.name %></p>
-                  <p class="card-body-song-info col">from : <%= post_song.song.album.name %></p>
+                  <!-- アルバム名非表示
+                  <p class="card-body-song-info col">from : <%= post_song.song.album.name %></p> -->
                 </div>
               <% end %>
             </div>
