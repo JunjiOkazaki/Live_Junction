@@ -1,3 +1,5 @@
+<img src="/app/javascript/images/Live_Junction-default-logos.jpeg" width="320px">
+
 # このwebアプリについて
 
 LiveJunctionはメディアミックス作品「BanG Dream!」プロジェクトの
@@ -22,6 +24,10 @@ RailsのCRUD機能とdeviseによるユーザー登録機能をベースに作�
 非同期で収録アルバム名に応じた曲名を動的にセレクトボックスに反映させ、  
 セレクトボックスの入力フォームもライブの曲数に合わせて非同期で増減できるようにしています。  
 シンプルな挙動ながら、思いのほか複雑な実装が必要となりましたが非常に勉強になりました。
+
+## ER図
+
+![image 2](/Live_Junction.drawio.svg)
 
 ## 今後の機能追加について
 
