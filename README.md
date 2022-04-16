@@ -1,4 +1,6 @@
-# このwebアプリについて
+# Live_Junction
+
+## このwebアプリについて
 
 LiveJunctionはメディアミックス作品「BanG Dream!」プロジェクトの
 リアルバンド「RAISE A SUILEN」のセットリスト作成webアプリです。
@@ -13,6 +15,8 @@ LiveJunctionはメディアミックス作品「BanG Dream!」プロジェクト
 手打ちによるスペル間違い防止や入力時間の短縮ができます。  
 また写真の投稿も可能となっています。  
 API未実装のため、他SNSで利用する際はスクリーンショットやコピー＆ペーストを利用します。
+
+![test image 0](live_junction_gif01.gif)
 
 ## このアプリの実装について
 
